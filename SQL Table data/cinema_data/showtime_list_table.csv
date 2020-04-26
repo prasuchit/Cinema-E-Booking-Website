@@ -1,0 +1,8 @@
+showtime_id,availability,date,duration,name,time
+2,0,12/03/2019,120,"Tuesday - VIP",17:00
+3,0,12/02/2019,150,"Monday - VIP",17:00
+4,0,12/01/2019,90,"Sunday - VIP",18:00
+5,1,12/04/2019,120,"Wednesday - VIP",15:30
+6,1,12/05/2019,90,"Thursday - VIP",20:30
+7,1,12/06/2019,120,"Friday - VIP",19:30
+8,0,12/07/2019,150,"Saturday - VIP",16:30
