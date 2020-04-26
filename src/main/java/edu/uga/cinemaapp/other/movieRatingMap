@@ -1,0 +1,17 @@
+package edu.uga.cinemaapp.other;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class movieRatingMap {
+
+    public static final Map<Integer, String> ratingMap = new HashMap<>();
+
+    static {
+        ratingMap.put(0, "G");
+        ratingMap.put(1, "PG");
+        ratingMap.put(2, "PG_13");
+        ratingMap.put(3, "R");
+        ratingMap.put(4, "NC_17");
+    }
+}

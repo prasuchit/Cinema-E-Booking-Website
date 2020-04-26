@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Movie Admin - Dashboard</title>
+
+  <!-- Custom fonts for this template-->
+  <link th:href="@{/vendor/fontawesome-free/css/all.css}" rel="stylesheet" type="text/css">
+
+  <!-- Page level plugin CSS-->
+  <link th:href="@{/vendor/datatables/dataTables.bootstrap4.css}" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link th:href="@{/css/sb-admin.css}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul th:replace="fragments/_sidebar :: sidebar"></ul>
+
+    <div id="content-wrapper">
+
+      <div class="container-fluid">
+
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a th:href="@{/admin}">Admin Dashboard</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a th:href="@{/admin/manage_movies}">Manage Movies</a>
+          </li>
+          <li class="breadcrumb-item active">Schedule Movie</li>
+        </ol>
+
+        <!-- DataTables Example -->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-table"></i>
+            Movies</div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Duration</th>
+                    <th>Available Times</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Title</th>
+                        <th>Duration</th>
+                        <th>Available Times</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                  <th:block th:each="movie : ${movies}">
+
+                    <tr>
+                      <td th:text="${movie.name}"></td>
+                      <td th:text="${movie.duration}"></td>
+                      <td>
+
+                        <form th:action="@{/admin/schedule_movie}" th:id="'myform' + ${movie.id}" method="POST" >
+                          <label th:for="${movie.id}"></label>
+                          <input type="hidden" th:value="${movie.id}" name="movie_id">
+
+                          <select class="showtime_date">
+                            <option th:each="showtime : ${showtimes}" th:value="${showtime}" th:text="${showtime}">
+                            </option>
+                          </select>
+                          <select name="showtime_id" class="times">
+                          </select>
+                          
+                          <button type="submit">Schedule</button>
+                        </form>
+                      </td>
+                    </tr>
+
+                  </th:block>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        </div>
+
+        <p class="small text-center text-muted my-5">
+          <em>More table examples coming soon...</em>
+        </p>
+
+      </div>
+      <!-- /.container-fluid -->
+
+      <!-- Sticky Footer -->
+      <footer class="sticky-footer">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright © Cinema E Booking 2019</span>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+    <!-- /.content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="submit" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            <a class="close" th:href="@{/admin}">Close</a>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="submit" data-dismiss="modal" aria-label="Cancel">
+            <span aria-hidden="true"></span>
+            <a class="close" th:href="@{/admin}">Cancel</button>
+          <a class="btn btn-primary" href="/logout">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+  <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+  <!-- Page level plugin JavaScript-->
+  <script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
+  <script th:src="@{/vendor/datatables/jquery.dataTables.js}"></script>
+  <script th:src="@{/vendor/datatables/dataTables.bootstrap4.js}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script th:src="@{/js/sb-admin.min.js}"></script>
+
+  <!-- Demo scripts for this page-->
+  <script th:src="@{/js/demo/datatables-demo.js}"></script>
+  <script th:src="@{/js/demo/chart-area-demo.js}"></script>
+
+  <script>
+    $(document).ready(function () {
+
+
+      $(".showtime_date").change(function () {
+        var data = {
+          date: this.value
+        }
+        var $select = $(this).siblings(".times");
+        console.log($select);
+
+
+        // $.post( "/admin/loadtimes", JSON.stringify(id));
+
+        $.ajax({
+          type: "GET", //Made Change
+          url: "/admin/loadtimes",
+          data: { "date": data.date },
+          success: function (result) {
+            var data = JSON.parse(result);
+            $select.empty();
+            $.each(data, function (key, value) {
+              // alert("fuck "+ key + " + "+ value);
+              $select.append('<option value=' + key + '>' + value + '</option>');
+            });
+
+
+          }
+        });
+
+      });
+    });
+
+  </script>
+
+</body>
+
+</html>

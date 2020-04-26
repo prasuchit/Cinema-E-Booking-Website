@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7 no-js" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8 no-js" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)]><!-->
+<html lang="en" class="no-js" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Basic need -->
+  <title>Cinema Booking</title>
+  <meta charset="UTF-8" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="" />
+  <link rel="profile" href="#" />
+  <!-- STYLESHEETS -->
+  <div th:replace="fragments/_styles :: homeStyle"></div>
+</head>
+
+<body>
+  <!--preloading-->
+  <div th:replace="fragments/_preloader :: preloader"></div>
+  <!--end of preloading-->
+  <!--login form popup-->
+  <div th:replace="fragments/_loginform :: loginform"></div>
+  <!--end of login form popup-->
+  <!--signup form popup-->
+  <div th:replace="fragments/_signupform :: signupform"></div>
+  <!--end of signup form popup-->
+
+  <!-- BEGIN | Header -->
+  <header th:replace="fragments/_header :: header"></header>
+  <!-- END | Header -->
+
+  <div class="slider movie-items">
+    <div class="container">
+      <div class="row">
+        <div class="social-link">
+          <p>Follow us:</p>
+          <a href="https://www.facebook.com"><i class="ion-social-facebook"></i></a>
+          <a href="https://www.twitter.com"><i class="ion-social-twitter"></i></a>
+          <a href="https://aboutme.google.com"><i class="ion-social-googleplus"></i></a>
+          <a href="https://www.youtube.com"><i class="ion-social-youtube"></i></a>
+        </div>
+        <div class="slick-multiItemSlider">
+          <th:block th:each="movie : ${movies}">
+            <div class="movie-item">
+              <div class="mv-img">
+                <a th:href="@{'/moviesingle/' + ${movie.id}}">
+                  <img th:src="${movie.coverImage}" alt="" width="285" height="437" /></a>
+              </div>
+              <div class="title-in">
+                <div class="cate">
+                  <span class="blue"><a th:href="@{/search?searchparam=2&keyword=} +  ${#strings.toLowerCase(T(edu.uga.cinemaapp.other.MovieMaps).genreMap['__${movie.genre}__'])}">[[${T(edu.uga.cinemaapp.other.MovieMaps).genreMap['__${movie.genre}__']}]]</a></span>
+                  </div>
+                  <h6><a th:href="@{'/moviesingle/' + ${movie.id}}">[[${movie.name}]]</a></h6>
+                  <p><i class="ion-android-star"></i><span>8.4</span> /10</p>
+                </div>
+              </div>
+            </th:block>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div th:replace="fragments/_message :: message"></div>
+    <!-- latest news v1 section-->
+    <div class="latestnew">
+      <div class="container">
+        <div class="row ipad-width">
+          <div class="col-md-8">
+            <div class="ads">
+              <img
+                th:src="@{images/uploads/ads2.png}"
+                alt=""
+                width="728"
+                height="106"
+              />
+            </div>
+            <div class="title-hd">
+              <h2>Latest news</h2>
+            </div>
+            <div class="tabs">
+              <ul class="tab-links-3">
+                <li class="active"><a href="#tab31">#Movies </a></li>
+                <li><a href="#tab32"> #TV Shows </a></li>
+                <li><a href="#tab33"> # Celebs</a></li>
+              </ul>
+              <div class="tab-content">
+                <div id="tab31" class="tab active">
+                  <div class="row">
+                    <th:block th:each="news : ${newss}">
+                        <br>
+                        <br>
+                        <br>
+                    <div class="blog-item-style-1">
+                      <img
+                        th:src="${news.newsImages}"
+                        alt=""
+                        width="300"
+                        height="250"
+                      />
+                      <div class="blog-it-infor">
+                        <h3>
+                          <a th:href="${news.link}"
+                            >[[${news.title}]]</a
+                          >
+                        </h3>
+                        <span class="time">13 hours ago</span>
+                        <p>
+                          [[${news.summ}]]
+                        </p>
+                        
+                        <p>
+                          [[${news.description}]]
+                        </p>
+                      </div>
+                    </div>
+                  </th:block>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          <div class="col-md-4">
+            <div class="sidebar">
+              <div class="sb-facebook sb-it">
+                <h4 class="sb-title">Find us on Facebook</h4>
+                <a style="color: steelblue;" href="https://www.facebook.com/">Like our page</a>
+                <iframe
+                src="#"
+                data-src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ftemplatespoint.net%2F%3Ffref%3Dts&tabs=timeline&width=300&height=315px&small_header=true&adapt_container_width=false&hide_cover=false&show_facepile=true&appId"
+                width="300"
+                height="315"
+                style="border:none;overflow:hidden"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end of latest new v1 section-->
+    <!-- footer section-->
+    <footer th:replace="fragments/_footer :: footer"></footer>
+    <!-- end of footer section-->
+    <div th:replace="fragments/_scripts :: homeScripts"></div>
+  </body>
+</html>

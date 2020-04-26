@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7 no-js" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8 no-js" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)]><!-->
+<html lang="en" class="no-js" xmlns:th="http://www.thymeleaf.org">
+  <!-- moviegrid07:29-->
+  <head>
+    <!-- Basic need -->
+    <title>Cinema Booking</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <link rel="profile" href="#" />
+
+    <!--Google Font-->
+    <link
+      rel="stylesheet"
+      href="http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600"
+    />
+    <!-- Mobile specific meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone-no" />
+
+    <!-- CSS files -->
+    <link rel="stylesheet" th:href="@{/css/plugins.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+    <script
+      language="javascript"
+      type="text/javascript"
+      scr="js/custom.css"
+    ></script>
+  </head>
+  <body>
+    <!--preloading-->
+    <div th:replace="fragments/_preloader :: preloader"></div>
+    <!--end of preloading-->
+    <!--login form popup-->
+    <!-- <div th:replace="fragments/_loginform :: loginform"></div> -->
+    <!--end of login form popup-->
+    <!--signup form popup-->
+    <!-- <div th:replace="fragments/_signupform :: signupform"></div> -->
+    <!--end of signup form popup-->
+
+    <!-- BEGIN | Header -->
+    <header th:replace="fragments/_header :: header"></header>
+    <!-- END | Header -->
+
+    <div class="hero common-hero">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="hero-ct">
+              <h1>Seats Selection</h1>
+              <ul class="breadcumb">
+                <li class="active"><a th:href="@{/}">Home</a></li>
+                <li>
+                  <span class="ion-ios-arrow-right"></span> Seats Selection
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-single">
+      <div class="container">
+        <div class="col-md-9 col-sm-12 col-xs-12">
+          <div class="form-style-1 user-pro" action="#">
+            <form
+              th:action="@{/booking/selectseats}"
+              th:object="${bookingVM}"
+              method="POST"
+            >
+            <div th:replace="fragments/_message :: message"></div>
+              <input type="hidden" th:field="*{id}" />
+              <input type="hidden" th:field="*{showtime_id}" />
+              <h4>Select Seats:</h4>
+
+              <div class="row">
+                <div class="col-md-6 form-it">
+                  <label>Adult </label>
+
+                  <button
+                    type="button"
+                    onclick="add('#numAdult')"
+                    class="redbtn smallBtns"
+                  >
+                    +
+                  </button>
+
+                  <input th:field="*{numAdult}" value="0" />
+
+                  <button
+                    type="button"
+                    onclick="sub('#numAdult')"
+                    class="redbtn smallBtns"
+                  >
+                    -
+                  </button>
+                </div>
+
+                <div class="col-md-6 form-it">
+                  <label>Old</label>
+
+                  <button
+                    type="button"
+                    onclick="add('#numOld')"
+                    class="redbtn smallBtns"
+                  >
+                    +
+                  </button>
+
+                  <input th:field="*{numOld}" value="0" />
+
+                  <button
+                    type="button"
+                    onclick="sub('#numOld')"
+                    class="redbtn smallBtns"
+                  >
+                    -
+                  </button>
+                </div>
+                <div class="col-md-6 form-it">
+                  <label>child</label>
+
+                  <button
+                    type="button"
+                    onclick="add('#numChild')"
+                    class="redbtn smallBtns"
+                  >
+                    +
+                  </button>
+
+                  <input th:field="*{numChild}" value="0" />
+
+                  <button
+                    type="button"
+                    onclick="sub('#numChild')"
+                    class="redbtn smallBtns"
+                  >
+                    -
+                  </button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-2">
+                  <input type="submit" class="submit" value="Next" />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- footer section-->
+    <footer th:replace="fragments/_footer :: footer"></footer>
+    <!-- end of footer section-->
+
+    <div th:replace="fragments/_scripts :: homeScripts"></div>
+  </body>
+
+  <!-- moviegrid07:38-->
+</html>

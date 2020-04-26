@@ -1,0 +1,96 @@
+<!-- Sidebar -->
+<ul class="sidebar navbar-nav" th:fragment="sidebar">
+        <li class="nav-item active">
+          <a class="nav-link" th:href="@{/admin}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" th:href="@{/admin/manage_movies}" id="pagesDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Manage Movies</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <a class="dropdown-item" th:href="@{/admin/add_movie}">Add New Movie</a>
+            <a class="dropdown-item" th:href="@{/admin/movie_list}">Change Movie Info</a>
+            
+            <a class="dropdown-item" th:href="@{/admin/schedule_movie}">Schedule Movies</a>
+            <a class="dropdown-item" th:href="@{/admin/add_promotions}">Add Promotion</a>
+            <a class="dropdown-item" th:href="@{/admin/edit_promotions}">Edit Promotions</a>
+            <a class="dropdown-item" th:href="@{/admin/edit_prices}">Edit Prices</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" th:href="@{/admin/manage_users}" id="pagesDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Manage Users</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <a class="dropdown-item" th:href="@{/admin/add_user}">Add User</a>
+            <a class="dropdown-item" th:href="@{/admin/delete_user}">Delete User</a>
+            <a class="dropdown-item" th:href="@{/admin/promote_user}">Promote User</a>
+            <a class="dropdown-item" th:href="@{/admin/demote_user}">Demote User</a>
+            <a class="dropdown-item" th:href="@{/admin/suspend_user}">(Un)suspend User</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" th:href="@{/admin/manage_showtimes}" id="pagesDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Manage Showtimes</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <a class="dropdown-item" th:href="@{/admin/add_showtime}">Add Showtime</a>
+            <a class="dropdown-item" th:href="@{/admin/edit_showtime}">Edit Showtime</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" th:href="@{/admin/manage_halls}" id="pagesDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Manage Halls</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <a class="dropdown-item" th:href="@{/admin/add_hall}">Add Hall</a>
+            <a class="dropdown-item" th:href="@{/admin/edit_hall}">Edit Hall</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" th:href="@{/admin/manage_news}" id="pagesDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Manage News</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <a class="dropdown-item" th:href="@{/admin/add_news}">Add News</a>
+            <a class="dropdown-item" th:href="@{/admin/edit_news}">Edit News</a>
+            
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" th:href="@{/admin/manage_reports}" id="pagesDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Manage Reports</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <a class="dropdown-item" th:href="@{/admin/gen_report}">Generate Report</a>
+          </div>
+        </li>
+        <!--
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/charts}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Charts</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/tables}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Tables</span></a>
+        </li>
+        -->
+  
+      </ul>

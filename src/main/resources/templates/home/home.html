@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7 no-js" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8 no-js" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en" class="no-js">
+
+
+<head>
+	<!-- Basic need -->
+	<title>Cinema Booking</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="">
+	<link rel="profile" href="#">
+
+    <!--Google Font-->
+    <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
+	<!-- Mobile specific meta -->
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone-no">
+
+    <!-- CSS files -->
+    <link rel="stylesheet" th:href="@{/css/plugins.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+</head>
+<body>
+<!--preloading-->
+<div id="preloader">
+    <img class="logo" th:src="@{/images/logo1.png}" alt="" width="119" height="58">
+    <div id="status">
+        <span></span>
+        <span></span>
+    </div>
+</div>
+<!--end of preloading-->
+<!--login form popup-->
+<div class="login-wrapper" id="login-content">
+    <div class="login-content">
+        <a href="#" class="close">x</a>
+        <h3>Login</h3>
+        <form method="post" action="#">
+        	<div class="row">
+        		 <label for="email">
+                    Email:
+                    <input type="text" name="email" id="email" placeholder="Firstname@uga.edu"  required="required" />
+                </label>
+        	</div>
+           
+            <div class="row">
+            	<label for="password">
+                    Password:
+                    <input type="password" name="password" id="password" placeholder="******" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+                </label>
+            </div>
+            <div class="row">
+            	<div class="remember">
+					<div>
+						<input type="checkbox" name="remember" value="Remember me"><span>Remember me</span>
+					</div>
+            		<a href="#">Forget password ?</a>
+            	</div>
+            </div>
+           <div class="row">
+           	 <button type="submit">Login</button>
+           </div>
+        </form>
+        <div class="row">
+        	<p>Or via social</p>
+            <div class="social-btn-2">
+            	<a class="fb" href="#"><i class="ion-social-facebook"></i>Facebook</a>
+            	<a class="tw" href="#"><i class="ion-social-twitter"></i>twitter</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end of login form popup-->
+<!--signup form popup-->
+<div class="login-wrapper"  id="signup-content">
+    <div class="login-content">
+        <a href="#" class="close">x</a>
+        <h3>sign up</h3>
+        <form method="post" action="#">
+            <div class="row">
+                 <label for="username-1">
+                    FirstName:
+                    <input type="text" name="firstname" id="username-1" placeholder ="Firstname"  required="required" />
+                </label>
+			</div>
+			<div class="row">
+				<label for="username-2">
+				   LastName:
+				   <input type="text" name="lastname" id="username-2" placeholder="Lastname"  required="required" />
+			   </label>
+		   </div>
+           			
+			<div class="row">
+				<label for="dob">
+				   DATE OF BIRTH:
+				   <input type="text" name="Date of Birth" id="dob" placeholder="07/12/1994"  required="required" />
+			   </label>
+		   </div> 
+            <div class="row">
+                <label for="email-2">
+                    your email:
+                    <input type="email" name="email" id="email-2" placeholder="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required="required" />
+                </label>
+            </div>
+             <div class="row">
+                <label for="password-2">
+                    Password:
+                    <input type="password" name="password" id="password-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+                </label>
+            </div>
+             <div class="row">
+                <label for="repassword-2">
+                    re-type Password:
+                    <input type="password" name="password" id="repassword-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+                </label>
+            </div>
+           <div class="row">
+             <button type="submit" href>sign up</button>
+           </div>
+        </form>
+    </div>
+</div>
+<!--end of signup form popup-->
+
+<!-- BEGIN | Header -->
+    <header th:replace="fragments/_header :: header"></header>
+    <!-- END | Header -->
+
+<div class="slider movie-items">
+	<div class="container">
+		<div class="row">
+			<div class="social-link">
+				<p>Follow us: </p>
+				<a href="https://www.google.com"><i class="ion-social-facebook"></i></a>
+				<a href="#"><i class="ion-social-twitter"></i></a>
+				<a href="#"><i class="ion-social-googleplus"></i></a>
+				<a href="#"><i class="ion-social-youtube"></i></a>
+			</div>
+	    	<div  class="slick-multiItemSlider">
+	    		<div class="movie-item">
+	    			<div class="mv-img">
+	    				<a href="#"><img th:src="@{/images/uploads/slider1.jpg}" alt="" width="285" height="437"></a>
+	    			</div>
+	    			<div class="title-in">
+	    				<div class="cate">
+	    					<span class="blue"><a href="#">Sci-fi</a></span>
+	    				</div>
+	    				<h6><a href="#">Interstellar</a></h6>
+	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	    			</div>
+	    		</div>
+				<div class="movie-item">
+	    			<div class="mv-img">
+	    				<a href="#"><img th:src="@{/images/uploads/slider2.jpg}" alt="" width="285" height="437"></a>
+	    			</div>
+	    			<div class="title-in">
+	    				<div class="cate">
+	    					<span class="yell"><a href="#">action</a></span>
+	    				</div>
+	    				<h6><a href="#">The revenant</a></h6>
+	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	    			</div>
+	    		</div>
+	    		<div class="movie-item">
+	    			<div class="mv-img">
+	    				<a href="#"><img th:src="@{/images/uploads/slider3.jpg}" alt="" width="285" height="437"></a>
+	    			</div>
+	    			<div class="title-in">
+	    				<div class="cate">
+	    					<span class="green"><a href="#">comedy</a></span>
+	    				</div>
+	    				<h6><a href="#">Die hard</a></h6>
+	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	    			</div>
+	    		</div>
+	    		<div class="movie-item">
+	    			<div class="mv-img">
+	    				<a href="#"><img th:src="@{/images/uploads/slider4.jpg}" alt="" width="285" height="437"></a>
+	    			</div>
+	    			<div class="title-in">
+	    				<div class="cate">
+	    					<span class="blue"><a href="#">Sci-fi</a></span> <span class="orange"><a href="#">advanture</a></span>
+	    				</div>
+	    				<h6><a href="#">The walk</a></h6>
+	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	    			</div>
+	    		</div>
+	    		<div class="movie-item">
+	    			<div class="mv-img">
+	    				<a href="#"><img th:src="@{/images/uploads/slider1.jpg}" alt="" width="285" height="437"></a>
+	    			</div>
+	    			<div class="title-in">
+	    				<div class="cate">
+	    					<span class="blue"><a href="#">Sci-fi</a></span>
+	    				</div>
+	    				<h6><a href="#">Interstellar</a></h6>
+	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	    			</div>
+	    		</div>
+				<div class="movie-item">
+	    			<div class="mv-img">
+	    				<a href="#"><img th:src="@{/images/uploads/slider2.jpg}" alt="" width="285" height="437"></a>
+	    			</div>
+	    			<div class="title-in">
+	    				<div class="cate">
+	    					<span class="yell"><a href="#">action</a></span>
+	    				</div>
+	    				<h6><a href="#">The revenant</a></h6>
+	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	    			</div>
+	    		</div>
+	    		<div class="movie-item">
+	    			<div class="mv-img">
+	    				<img th:src="@{/images/uploads/slider3.jpg}" alt="" width="285" height="437">
+	    			</div>
+	    			<div class="title-in">
+	    				<div class="cate">
+	    					<span class="green"><a href="#">comedy</a></span>
+	    				</div>
+	    				<h6><a href="#">Die hard</a></h6>
+	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	    			</div>
+	    		</div>
+	    		<div class="movie-item">
+	    			<div class="mv-img">
+	    				<img th:src="@{/images/uploads/slider4.jpg}" alt="" width="285" height="437">
+	    			</div>
+	    			<div class="title-in">
+	    				<div class="cate">
+	    					<span class="blue"><a href="#">Sci-fi</a></span> <span class="orange"><a href="#">advanture</a></span>
+	    				</div>
+	    				<h6><a href="#">The walk</a></h6>
+	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	    			</div>
+	    		</div>
+	    		<div class="movie-item">
+	    			<div class="mv-img">
+	    				<img th:src="@{/images/uploads/slider3.jpg}" alt="" width="285" height="437">
+	    			</div>
+	    			<div class="title-in">
+	    				<div class="cate">
+	    					<span class="green"><a href="#">comedy</a></span>
+	    				</div>
+	    				<h6><a href="#">Die hard</a></h6>
+	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	    			</div>
+	    		</div>
+	    	</div>
+	    </div>
+	</div>
+</div>
+<div class="movie-items">
+	<div class="container">
+		<div class="row ipad-width">
+			<div class="col-md-8">
+				<div class="title-hd">
+					<h2>in theater</h2>
+					<a href="#" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
+				</div>
+				<div class="tabs">
+					<ul class="tab-links">
+						<li class="active"><a href="#tab1">#Now Showing</a></li>
+						<li><a href="#tab2"> #Coming soon</a></li>                        
+					</ul>
+				    <div class="tab-content">
+				        <div id="tab1" class="tab active">
+				            <div class="row">
+				            	<div class="slick-multiItem">
+				            		<div class="slide-it">
+				            			<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item1.jpg}" alt="" width="185" height="284">
+					            			</div> 
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">Interstellar</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+				            		</div>
+									<div class="slide-it">
+										<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item2.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">The revenant</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+									</div>
+				            		<div class="slide-it">
+				            			<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item3.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">Die hard</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+				            		</div>
+				            		<div class="slide-it">
+				            			<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item4.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">The walk</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+				            		</div>
+				            		<div class="slide-it">
+				            			<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item5.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">Interstellar</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+				            		</div>
+									<div class="slide-it">
+										<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item6.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">The revenant</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+									</div>
+				            		<div class="slide-it">
+				            			<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item7.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">Die hard</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+				            		</div>
+				            		<div class="slide-it">
+				            			<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item8.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">The walk</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+				            		</div>
+				            		<div class="slide-it">
+				            			<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item3.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">Die hard</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+				            		</div>
+				            	</div>
+				            </div>
+				        </div>
+				        <div id="tab2" class="tab">
+				           <div class="row">
+				            	<div class="slick-multiItem">
+				            		<div class="slide-it">
+				            			<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item5.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">Interstellar</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+				            		</div>
+									<div class="slide-it">
+										<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item6.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">The revenant</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+									</div>
+				            		<div class="slide-it">
+				            			<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item7.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">Die hard</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+				            		</div>
+				            		<div class="slide-it">
+				            			<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item8.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">The walk</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+				            		</div>
+				            		<div class="slide-it">
+				            			<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item3.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">Die hard</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+				            		</div>
+				            	</div>
+				            </div>
+				        </div>
+				        <div id="tab3" class="tab">
+				        	<div class="row">
+				            	<div class="slick-multiItem">
+				            		<div class="slide-it">
+				            			<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item1.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">Interstellar</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+				            		</div>
+									<div class="slide-it">
+										<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item2.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">The revenant</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+									</div>
+				            		<div class="slide-it">
+				            			<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item3.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">Die hard</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+				            		</div>
+				            		<div class="slide-it">
+				            			<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item4.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">The walk</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+				            		</div>
+				            		<div class="slide-it">
+				            			<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item3.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">Die hard</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+				            		</div>
+				            	</div>
+				            </div>
+			       	 	</div>
+			       	 	<div id="tab4" class="tab">
+				        	<div class="row">
+				            	<div class="slick-multiItem">
+				            		<div class="slide-it">
+				            			<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item5.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">Interstellar</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+				            		</div>
+									<div class="slide-it">
+										<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item6.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">The revenant</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+									</div>
+				            		<div class="slide-it">
+				            			<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item7.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">Die hard</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+				            		</div>
+				            		<div class="slide-it">
+				            			<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item8.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">The walk</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+				            		</div>
+				            		<div class="slide-it">
+				            			<div class="movie-item">
+					            			<div class="mv-img">
+					            				<img th:src="@{/images/uploads/mv-item3.jpg}" alt="" width="185" height="284">
+					            			</div>
+					            			<div class="hvr-inner">
+					            				<a  th:href="@{/moviesingle}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+					            			</div>
+					            			<div class="title-in">
+					            				<h6><a href="#">Die hard</a></h6>
+					            				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+					            			</div>
+					            		</div>
+				            		</div>
+				            	</div>
+				            </div>
+			       	 	</div>
+				    </div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="sidebar">
+					<div class="ads">
+						<img th:src="@{/images/uploads/ads1.png}" alt="" width="336" height="296">
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="trailers">
+	<div class="container">
+		<div class="row ipad-width">
+			<div class="col-md-12">
+				<div class="title-hd">
+					<h2>in theater</h2>
+					<a href="#" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
+				</div>
+				<div class="videos">
+				 	<div class="slider-for-2 video-ft">
+				 		<div>
+					    	<iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/1Q8fG0TtVAY"></iframe>
+					    </div>
+					    <div>
+					    	<iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/w0qQkSuWOS8"></iframe>
+					    </div>
+					    <div>
+					    	<iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/44LdLqgOpjo"></iframe>
+					    </div>
+					    <div>
+					    	<iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/gbug3zTm3Ws"></iframe>
+					    </div>
+					    <div>
+					    	<iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/e3Nl_TCQXuw"></iframe>
+					    </div>
+					    <div>
+					    	<iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/NxhEZG0k9_w"></iframe>
+					    </div>
+						
+						
+					</div>
+					<div class="slider-nav-2 thumb-ft">
+						<div class="item">
+							<div class="trailer-img">
+								<img th:src="@{/images/uploads/trailer7.jpg}"  alt="photo by Barn Images" width="4096" height="2737">
+							</div>
+							<div class="trailer-infor">
+	                        	<h4 class="desc">Wonder Woman</h4>
+	                        	<p>2:30</p>
+	                        </div>
+						</div>
+						<div class="item">
+							<div class="trailer-img">
+								<img th:src="@{/images/uploads/trailer2.jpg}"  alt="photo by Barn Images" width="350" height="200">
+							</div>
+							<div class="trailer-infor">
+	                        	<h4 class="desc">Oblivion: Official Teaser Trailer</h4>
+	                        	<p>2:37</p>
+	                        </div>
+						</div>
+						<div class="item">
+							<div class="trailer-img">
+								<img th:src="@{/images/uploads/trailer6.jpg}" alt="photo by Joshua Earle">
+							</div>
+							<div class="trailer-infor">
+	                        	<h4 class="desc">Exclusive Interview:  Skull Island</h4>
+	                        	<p>2:44</p>
+	                        </div>
+						</div>
+						<div class="item">
+							<div class="trailer-img">
+								<img th:src="@{/images/uploads/trailer3.png}" alt="photo by Alexander Dimitrov" width="100" height="56">
+							</div>
+							<div class="trailer-infor">
+	                        	<h4 class="desc">Logan: Director James Mangold Interview</h4>	
+	                        	<p>2:43</p>
+	                        </div>
+						</div>
+						<div class="item">
+							<div class="trailer-img">
+								<img th:src="@{/images/uploads/trailer4.png"  alt="photo by Wojciech Szaturski" width="100" height="56">
+							</div>
+							<div class="trailer-infor">
+	                        	<h4 class="desc">Beauty and the Beast: Official Teaser Trailer 2</h4>	
+	                        	<p>2: 32</p>
+	                        </div>	
+						</div>
+						<div class="item">
+							<div class="trailer-img">
+								<img th:src="@{/images/uploads/trailer5.jpg}"  alt="photo by Wojciech Szaturski" width="360" height="189">
+							</div>
+							<div class="trailer-infor">
+	                        	<h4 class="desc">Fast&Furious 8</h4>	
+	                        	<p>3:11</p>
+	                        </div>	
+						</div>
+					
+					</div>
+				</div>   
+			</div>
+		</div>
+	</div>
+</div>
+<!-- latest new v1 section-->
+<div class="latestnew">
+	<div class="container">
+		<div class="row ipad-width">
+			<div class="col-md-8">
+				<div class="ads">
+					<img th:src="@{/images/uploads/ads2.png}" alt="" width="728" height="106">
+				</div>
+				<div class="title-hd">
+					<h2>Latest news</h2>
+				</div>
+				<div class="tabs">
+					<ul class="tab-links-3">
+						<li class="active"><a href="#tab31">#Movies </a></li>
+						<li><a href="#tab32"> #TV Shows </a></li>              
+						<li><a href="#tab33">  # Celebs</a></li>                       
+					</ul>
+				    <div class="tab-content">
+				        <div id="tab31" class="tab active">
+				            <div class="row">
+				            	<div class="blog-item-style-1">
+				            		<img th:src="@{/images/uploads/blog-it1.jpg}" alt="" width="170" height="250">
+				            		<div class="blog-it-infor">
+				            			<h3><a href="#">Brie Larson to play first female white house candidate Victoria Woodull in Amazon film</a></h3>
+				            			<span class="time">13 hours ago</span>
+				            			<p>Exclusive: <span>Amazon Studios </span>has acquired Victoria Woodhull, with Oscar winning Room star <span>Brie Larson</span> polsed to produce, and play the first female candidate for the presidency of the United States. Amazon bought it in a pitch package deal. <span> Ben Kopit</span>, who wrote the Warner Bros film <span>Libertine</span> that has...</p>
+				            		</div>
+				            	</div>
+				            </div>
+				        </div>
+				        <div id="tab32" class="tab">
+				           <div class="row">
+				            	<div class="blog-item-style-1">
+				            		<img th:src="@{/images/uploads/blog-it2.jpg}" alt="" width="170" height="250">
+				            		<div class="blog-it-infor">
+				            			<h3><a href="#">Tab 2</a></h3>
+				            			<span class="time">13 hours ago</span>
+				            			<p>Exclusive: <span>Amazon Studios </span>has acquired Victoria Woodhull, with Oscar winning Room star <span>Brie Larson</span> polsed to produce, and play the first female candidate for the presidency of the United States. Amazon bought it in a pitch package deal. <span> Ben Kopit</span>, who wrote the Warner Bros film <span>Libertine</span> that has...</p>
+				            		</div>
+				            	</div>
+				            </div>
+				        </div>
+				        <div id="tab33" class="tab">
+				        	<div class="row">
+				            	<div class="blog-item-style-1">
+				            		<img th:src="@{/images/uploads/blog-it1.jpg}" alt="" width="170" height="250">
+				            		<div class="blog-it-infor">
+				            			<h3><a href="#">Tab 3</a></h3>
+				            			<span class="time">13 hours ago</span>
+				            			<p>Exclusive: <span>Amazon Studios </span>has acquired Victoria Woodhull, with Oscar winning Room star <span>Brie Larson</span> polsed to produce, and play the first female candidate for the presidency of the United States. Amazon bought it in a pitch package deal. <span> Ben Kopit</span>, who wrote the Warner Bros film <span>Libertine</span> that has...</p>
+				            		</div>
+				            	</div>
+				            </div>
+			       	 	</div>
+				    </div>
+				</div>
+				<div class="morenew">
+					<div class="title-hd">
+						<h3>More news on Blockbuster</h3>
+						<a href="#" class="viewall">See all Movies news<i class="ion-ios-arrow-right"></i></a>
+					</div>
+					<div class="more-items">
+						<div class="left">
+							<div class="more-it">
+								<h6><a href="#">Michael Shannon Frontrunner to play Cable in “Deadpool 2”</a></h6>
+								<span class="time">13 hours ago</span>
+							</div>
+							<div class="more-it">
+								<h6><a href="#">French cannibal horror “Raw” inspires L.A. theater to hand out “Barf Bags”</a></h6>
+								
+								<span class="time">13 hours ago</span>
+							</div>
+						</div>
+						<div class="right">
+							<div class="more-it">
+								<h6><a href="#">Laura Dern in talks to join Justin Kelly’s biopic “JT Leroy”</a></h6>
+								<span class="time">13 hours ago</span>
+							</div>
+							<div class="more-it">
+								<h6><a href="#">China punishes more than 300 cinemas for box office cheating</a></h6>
+								<span class="time">13 hours ago</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="sidebar">
+					<div class="sb-facebook sb-it">
+						<h4 class="sb-title">Find us on Facebook</h4>
+						<iframe src="#" data-src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ftemplatespoint.net%2F%3Ffref%3Dts&tabs=timeline&width=300&height=315px&small_header=true&adapt_container_width=false&hide_cover=false&show_facepile=true&appId" width="300" height="315" style="border:none;overflow:hidden" ></iframe>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--end of latest new v1 section-->
+<!-- footer section-->
+    <footer th:replace="fragments/_footer :: footer"></footer>
+    <!-- end of footer section-->
+
+
+<script src="js/jquery.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/plugins2.js"></script>
+<script src="js/custom.js"></script>
+</body>
+
+
+</html>

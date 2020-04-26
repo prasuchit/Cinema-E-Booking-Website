@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7 no-js" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8 no-js" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en" class="no-js">
+
+<!-- moviegrid07:29-->
+
+<head>
+    <!-- Basic need -->
+    <title>Cinema Booking</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <link rel="profile" href="#">
+
+    <!--Google Font-->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600" />
+    <!-- Mobile specific meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone-no" />
+
+    <!-- CSS files -->
+    <link rel="stylesheet" th:href="@{/css/plugins.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+
+    <script language="javascript" type="text/javascript" scr="js/custom.css"></script>
+
+
+</head>
+
+<body>
+    <!--preloading-->
+    <div th:replace="fragments/_preloader :: preloader"></div>
+    <!--end of preloading-->
+    <!--login form popup-->
+    <div th:replace="fragments/_loginform :: loginform"></div>
+    <!--end of login form popup-->
+    <!--signup form popup-->
+    <!-- <div th:replace="fragments/_signupform :: signupform"></div> -->
+    <!--end of signup form popup-->
+
+    <!-- BEGIN | Header -->
+    <header th:replace="fragments/_header :: header"></header>
+    <!-- END | Header -->
+
+    <div class="hero common-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="hero-ct">
+                        <h1> Payment</h1>
+                        <ul class="breadcumb">
+                            <li class="active"><a th:href="@{/}">Home</a></li>
+                            <li> <span class="ion-ios-arrow-right"></span> Payment</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-single">
+        <div class="container">
+            <div class="col-md-9 col-sm-12 col-xs-12">
+                <div class="form-style-1 user-pro" action="#">
+                    <form th:action="@{/booking/ordersummary}" th:object="${bankcards}" id="bankcards">
+                        <!-- <input type="hidden" th:field="${booking.id}" name="booking_id"/> -->
+                        <input type="hidden" th:field="${order.id}" name="id" />
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-label-group">
+                                        <p>Select Card:</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-label-group">
+                                        <select name = "bankcard_id" style="color: white;">
+                                            <option value="" selected disabled hidden>Choose Cardnumber</option>
+                                            <option th:each="bankcard : ${bankcards}" 
+                                            th:value="${bankcard.id}"
+                                            th:text="${bankcard.cardNumber}"
+                                            >
+                                        </option>
+                                    </select>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+                        <br>
+                        <br>
+                        <div class="row">
+							<div class="col-md-2">
+								<input class="submit" type="submit" value="submit">
+							</div>
+						</div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer section-->
+    <footer th:replace="fragments/_footer :: footer"></footer>
+    <!-- end of footer section-->
+
+    <div th:replace="fragments/_scripts :: homeScripts"></div>
+</body>
+
+<!-- moviegrid07:38-->
+
+</html>

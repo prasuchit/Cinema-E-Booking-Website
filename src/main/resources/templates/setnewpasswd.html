@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7 no-js" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8 no-js" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)]><!-->
+<html lang="en" class="no-js" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Basic need -->
+    <title>Cinema Booking</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <link rel="profile" href="#" />
+
+    <!--Google Font-->
+    <link
+      rel="stylesheet"
+      href="http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600"
+    />
+    <!-- Mobile specific meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone-no" />
+
+    <!-- CSS files -->
+    <link rel="stylesheet" th:href="@{/css/plugins.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+      <div th:replace="index :: preloader"></div>
+    <header th:replace="index :: header"></header>
+
+    <!--login form popup-->
+    <div class="login-wrapper" id="login-content">
+      <div class="login-content">
+        <a href="#" class="close">x</a>
+        <h3>Forgot Password</h3>
+        <form method="post" th:object="${fpvm}" th:action="@{/resetpasswd}">
+<input style="display: none;" name="hash" type="hidden" th:value="${fpvm.hash}"/>
+            <span style="color: #FF1C19;" th:text="${message}"
+            >[[${message}]]</span
+          >            
+          <div class="row">
+            <label for="newPass">
+              New Password:
+              <input
+                type="password"
+                name="newPass"
+                id="newPass"
+                placeholder="******"
+                required="required"
+              />
+            </label>
+          </div>
+          <div class="row">
+            <label for="confPass">
+              Confirm New Password:
+              <input
+                type="password"
+                name="confPass"
+                id="confPass"
+                placeholder="******"
+                required="required"
+              />
+            </label>
+          </div>
+          <div class="row">
+            <button type="submit">Reset Password</button>
+          </div>
+          <div class="row">
+            <a style="padding: 10px 5px; float: left;" href="/" th:href="@{/}">Home</a>
+            <a style="padding: 10px 5px; float: right;" href="/login" th:href="@{/login}">Log In</a>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+    <div style="width: 100%; height: 100%; background-color: black;" class="container"></div>
+    <!-- end of login form popup -->
+    <div th:replace="index :: footer"></div>
+
+
+    <div th:replace="fragments/_scripts :: homeScripts"></div>
+
+    <script th:inline="javascript"> 
+$( document ).ready(function() {
+    
+$("div.overlay").css({
+   "opacity" :"unset",
+   "-webkit-opacity":"unset",
+   "pointer-events":"auto"
+});
+
+});    
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<div th:fragment="homeScripts">
+  <script th:src="@{/js/jquery.js}"></script>
+  <script th:src="@{/js/plugins.js}"></script>
+  <script th:src="@{/js/plugins2.js}"></script>
+  <script th:src="@{/js/custom.js}"></script>
+  <script th:inline="javascript">
+    document.addEventListener(
+      "DOMContentLoaded",
+      function() {
+        var reg_req = false;
+        var log_req = false;
+
+        /*<![CDATA[*/
+        log_req = /*[[${log_req}]]*/ "false";
+        reg_req = /*[[${reg_req}]]*/ "false";
+        /*]]>*/
+        if (reg_req)
+          setTimeout(() => {
+            document
+              .getElementsByClassName("signupLink")[0]
+              .children[0].click();
+          }, 1000);
+
+        if (log_req)
+          setTimeout(() => {
+            document.getElementsByClassName("loginLink")[0].children[0].click();
+          }, 1000);
+      },
+      false
+    );
+  </script>
+</div>

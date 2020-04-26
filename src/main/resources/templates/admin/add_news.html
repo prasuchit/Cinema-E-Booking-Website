@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Movie Admin - Dashboard</title>
+
+  <!-- Custom fonts for this template-->
+  <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+
+  <!-- Page level plugin CSS-->
+  <link th:href="@{/vendor/datatables/dataTables.bootstrap4.css}" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link th:href="@{/css/sb-admin.css}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+
+
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+  <ul th:replace="fragments/_sidebar :: sidebar"></ul>
+
+    <div id="content-wrapper">
+
+      <div class="container-fluid">
+
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a th:href="@{/admin}">Admin Dashboard</a>
+          </li>
+          <li class="breadcrumb-item">
+              <a th:href="@{/admin/manage_news}"> Manage News</a>
+          </li>
+          <li class="breadcrumb-item active">Add News</li>
+        </ol>
+
+        <!-- Icon Cards-->
+        <div class="row">
+          <div class="container">
+            <div class="card card-register mx-auto mt-5">
+              <div class="card-header">Add News</div>
+              <div class="card-body">
+                <form th:action="@{/admin/add_news}" th:object="${news}" method="POST" id="add_news_form">
+                  <div th:replace="fragments/_message :: message"></div>
+                  <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" th:value="${title}" th:field="*{title}"  class="form-control"
+                        required="required">
+                      <label for="inputNewsTitle">News Title</label>
+                      <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style=" clear: both; color: #FF1C19;"></span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                      <div class="form-row">
+                          <div class="col-md-12">
+                            <div class="form-label-group">
+                              <input type="text" th:value="${summ}" th:field="*{summ}" name = "summary"  class="form-control"
+                              required="required">
+                            <label for="inputNewsSummary">News Summary</label>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-12">
+                          <div class="form-label-group">
+                            <input type="text" rows = "5" cols = "80" th:value="${description}" th:field="*{description}" name = "description"  class="form-control"
+                            required="required">
+                          <label for="inputNewsDescription">News Description</label>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="form-label-group">
+                      <input type="text" th:value="${link}" th:field="*{link}"  class="form-control"
+                      required="required">
+                    <label for="inputNewsLink">External Link</label>
+                    <span th:if="${#fields.hasErrors('link')}" th:errors="*{link}" style=" clear: both; color: #FF1C19;"></span>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <div class="form-row">
+                      <div class="col-md-6">
+                        <div class="form-label-group">
+                            <p>Choose News Photo URL:</p>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-label-group">
+                            <input type="text" th:field="*{newsImages}">
+                        </div>
+                      </div>
+                  </div>
+              </div>
+
+                  <button class="btn btn-primary btn-block" type="Submit">Submit</button>
+                  <button class="btn btn-primary btn-block" type="button" th:href="@{/admin/manage_news}">Cancel</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- DataTables Example -->
+
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Cinema E Booking 2019</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="submit" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            <a class="close" th:href="@{/admin}">Close</a>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="submit" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="/logout">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="js/demo/datatables-demo.js"></script>
+    <script src="js/demo/chart-area-demo.js"></script>
+
+</body>
+
+</html>

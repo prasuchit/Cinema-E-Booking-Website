@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Basic need -->
+    <title>Cinema Booking</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <link rel="profile" href="#">
+
+    <!--Google Font-->
+    <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
+    <!-- Mobile specific meta -->
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone-no">
+
+    <!-- CSS files -->
+    <link rel="stylesheet" th:href="@{/css/plugins.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+    <h1>hello guys!</h1>
+
+
+    <!-- <form th:action="@{/login}" method="POST" class="form-signin"> -->
+    <!-- <h3 class="form-signin-heading" th:text="Welcome"></h3>
+        <br /> -->
+
+    <!-- <input type="text" id="email" name="email" th:placeholder="Email" class="form-control" /> <br /> -->
+    <!-- <input type="password" th:placeholder="Password" id="password" name="password" class="form-control" /> -->
+    <!-- <br /> -->
+
+    <!-- <div align="center" th:if="${param.error}">
+            <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+        </div> -->
+    <!-- <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit"
+            th:text="Login"></button>
+    </form> -->
+
+
+
+    <form th:action="@{/login}" method="POST">
+        <div class="row">
+            <label for="email">
+                Email:
+                <input type="text" name="email" id="email" th.placeholder="youremail@uga.edu" required="required" />
+            </label>
+        </div>
+        <div class="row">
+            <label for="password">
+                Password:
+                <input type="password" name="password" id="password" th.placeholder="Password" />
+                <!-- pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" -->
+            </label>
+        </div>
+        <div class="row">
+            <div class="remember">
+                <div>
+                    <input type="checkbox" name="remember" value="Remember me"><span>Remember me</span>
+                </div>
+                <a href="#">Forget password ?</a>
+            </div>
+        </div>
+        <div class="row">
+
+            <button type="submit">Login</button>
+
+        </div>
+    </form>
+    <div th:replace="fragments/_scripts :: homeScripts"></div>
+</body>
+
+</html>

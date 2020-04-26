@@ -1,0 +1,122 @@
+<!--signup form popup-->
+<div th:fragment="signupform" class="login-wrapper" id="signup-content">
+  <div class="login-content">
+    <a href="#" class="close">x</a>
+    <h3>sign up</h3>
+    <form th:action="@{/registration}" th:object="${user}" method="post">
+      <div th:replace="fragments/_message :: message"></div>
+      <div class="row">
+        <label for="name" class="validation-message"
+          >First Name:
+          <input
+            type="text"
+            th:field="*{name}"
+            placeholder="First Name"
+            class="form-control"
+            required="required"
+          />
+          <span
+            style="color: #FF1C19;"
+            th:if="${#fields.hasErrors('name')}"
+            th:errors="*{name}"
+            >Name Error</span
+          >
+        </label>
+      </div>
+      <div class="row">
+        <label for="lastname" class="validation-message"
+          >Last Name:
+          <input
+            type="text"
+            th:field="*{lastName}"
+            placeholder="Last Name"
+            class="form-control"
+            required="required"
+          />
+          <span
+            style="color: #FF1C19;"
+            th:if="${#fields.hasErrors('lastName')}"
+            th:errors="*{lastName}"
+            >Name Error</span
+          >
+        </label>
+      </div>
+      <div class="row">
+        <label for="dob">
+          DATE OF BIRTH:
+          <input
+            type="text"
+            name="Date of Birth"
+            id="dob"
+            placeholder="07/12/1994"
+            required="required"
+          />
+        </label>
+      </div>
+      <div class="row">
+        <label for="email" class="validation-message"
+          >Email:
+          <input
+            type="text"
+            th:field="*{email}"
+            placeholder="Email"
+            class="form-control"
+            required="required"
+          />
+          <span
+            style="color: #FF1C19;"
+            th:if="${#fields.hasErrors('email')}"
+            th:errors="*{email}"
+            >Name Error</span
+          >
+        </label>
+      </div>
+      <div class="row">
+        <label for="password" class="validation-message"
+          >Password:
+          <input
+            type="password"
+            pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+            th:field="*{password}"
+            placeholder="Password"
+            class="form-control"
+            required="required"
+          />
+          <span
+            style="color: #FF1C19;"
+            th:if="${#fields.hasErrors('password')}"
+            th:errors="*{password}"
+            >Name Error</span
+          >
+        </label>
+      </div>
+      <div class="row">
+        <div class="col-md-6 form-it">
+          <label
+            ><input
+              style="height: auto !important;"
+              type="checkbox"
+              name="promo"
+              th:checked="${user.promo}"
+            />
+            Signup for Promos</label
+          >
+        </div>
+      </div>
+      <!-- <div class="row">
+                  <label for="repassword-2">
+                      re-type Password:
+                      <input type="password" name="password" id="repassword-2" placeholder=""
+                          pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                          required="required" />
+                  </label>
+              </div> -->
+      <div class="row">
+        <button type="submit" class="btn btn-primary btn-block">
+          Register User
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<!--end of signup form popup-->

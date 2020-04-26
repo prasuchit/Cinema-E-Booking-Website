@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7 no-js" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8 no-js" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en" class="no-js" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<!-- movielist07:38-->
+
+<head>
+	<!-- Basic need -->
+	<title>Cinema Booking</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="">
+	<link rel="profile" href="#">
+
+	<!--Google Font-->
+	<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
+	<!-- Mobile specific meta -->
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone-no">
+
+    <!-- CSS files -->
+    <link rel="stylesheet" th:href="@{/css/plugins.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+</head>
+
+<body>
+	<!--preloading-->
+    <div th:replace="fragments/_preloader :: preloader"></div>
+    <!--end of preloading-->
+	<!--login form popup-->
+    <div th:replace="fragments/_loginform :: loginform"></div>
+    <!--end of login form popup-->
+	<!--signup form popup
+    <div th:replace="fragments/_signupform :: signupform"></div>-->
+    <!--end of signup form popup-->
+
+	<!-- BEGIN | Header -->
+    <header th:replace="fragments/_header :: header"></header>
+    <!-- END | Header -->
+
+	<div class="hero common-hero">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="hero-ct">
+						<h1>Search Results</h1>
+						<ul class="breadcumb">
+							<li class="active"><a th:href="@{/}">Home</a></li>
+							<li> <span class="ion-ios-arrow-right"></span>Search Results</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	
+	<div class="page-single movie_list">
+		<div class="container">
+			<div class="row ipad-width2">
+				<div class="col-md-8 col-sm-12 col-xs-12">
+					<div class="topbar-filter">
+						<p>Found <span>1,608 movies</span> in total</p>
+						<label>Sort by:</label>
+						<select>
+							<option value="popularity">Popularity Descending</option>
+							<option value="popularity">Popularity Ascending</option>
+							<option value="rating">Rating Descending</option>
+							<option value="rating">Rating Ascending</option>
+							<option value="date">Release date Descending</option>
+							<option value="date">Release date Ascending</option>
+						</select>
+						<a href="movielist.html" class="list"><i class="ion-ios-list-outline active"></i></a>
+						<a href="moviegrid.html" class="grid"><i class="ion-grid"></i></a>
+					</div>
+
+
+				<th:block th:each="movie : ${movies}">
+					<div class="movie-item-style-2">
+						<img th:src="${movie.coverImage}" alt="">
+						<div class="mv-item-infor">
+							<h6><a th:href="@{'/moviesingle/' + ${movie.id}}">[[${movie.name}]] <span>([[${movie.year}]])</span></a>
+							</h6>
+							<p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+							<p class="describe">[[${movie.synopsis}]]
+							</p>
+							<p class="run-time"> Run Time: [[${movie.duration}]] minutes . <span>[[${movie.rating}]] </span> . <span>Release: 1 May
+									2015</span></p>
+							<p>Director: <a href="#">[[${movie.director}]]</a></p>
+							<p>Stars:[[${movie.cast}]]</p>
+						</div>
+					</div>
+				</th:block>
+				</div>
+
+
+				<div class="col-md-4 col-sm-12 col-xs-12">
+					<div class="sidebar">
+						<div class="search-form">
+							<!-- <h4 class="sb-title">Search for movie</h4> -->
+							
+							<!--form class="form-style-1">
+								<div class="row">
+									<div class="col-md-12 form-it">
+										<label>Movie name</label>										
+										<input type="text" class="form-control" placeholder="Enter keywords">
+									</div>
+									<div class="col-md-12 form-it">
+										<label>Genres & Subgenres</label>
+										<div class="group-ip">
+											<select name="skills" multiple="" class="ui fluid dropdown">
+												<option value="">Enter to filter genres</option>
+												<option value="Action1">Action 1</option>
+												<option value="Action2">Action 2</option>
+												<option value="Action3">Action 3</option>
+												<option value="Action4">Action 4</option>
+												<option value="Action5">Action 5</option>
+											</select>
+										</div>
+
+									</div>
+									<div class="col-md-12 form-it">
+										<label>Rating Range</label>
+
+										<select>
+											<option value="range">-- Select the rating range below --</option>
+											<option value="saab">-- Select the rating range below --</option>
+											<option value="saab">-- Select the rating range below --</option>
+											<option value="saab">-- Select the rating range below --</option>
+										</select>
+
+									</div>
+									<div class="col-md-12 form-it">
+										<label>Release Year</label>
+										<div class="row">
+											<div class="col-md-6">
+												<select>
+													<option value="range">From</option>
+													<option value="number">10</option>
+													<option value="number">20</option>
+													<option value="number">30</option>
+												</select>
+											</div>
+											<div class="col-md-6">
+												<select>
+													<option value="range">To</option>
+													<option value="number">20</option>
+													<option value="number">30</option>
+													<option value="number">40</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-12 ">
+										<input class="submit" type="submit" value="submit">
+									</div>
+								</div>
+							</form-->
+						</div>
+						<div class="ads">
+							<img th:src="@{/images/uploads/ads1.png}" alt="">
+						</div>
+						<div class="sb-facebook sb-it">
+							<h4 class="sb-title">Find us on Facebook</h4>
+							<iframe src="#"
+								data-src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ftemplatespoint.net%2F%3Ffref%3Dts&tabs=timeline&width=340&height=315px&small_header=true&adapt_container_width=false&hide_cover=false&show_facepile=true&appId"
+								height="315" style="width:100%;border:none;overflow:hidden"></iframe>
+						</div>
+						<div class="sb-twitter sb-it">
+							<h4 class="sb-title">Tweet to us</h4>
+							<div class="slick-tw">
+								<div class="tweet item" id="">
+									<!-- Put your twiter id here -->
+								</div>
+								<div class="tweet item" id="">
+									<!-- Put your 2nd twiter account id here -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- footer section-->
+    <footer th:replace="fragments/_footer :: footer"></footer>
+    <!-- end of footer section-->
+
+    <div th:replace="fragments/_scripts :: homeScripts"></div>
+</body>
+
+<!-- movielist07:38-->
+
+</html>

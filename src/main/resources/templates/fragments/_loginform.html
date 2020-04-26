@@ -1,0 +1,67 @@
+<!--login form popup-->
+<div th:fragment="loginform" class="login-wrapper" id="login-content">
+  <div class="login-content">
+    <a href="#" class="close">x</a>
+    <h3>Login</h3>
+    <form th:action="@{/login}" th:object="${user}" method="POST">
+      <div th:replace="fragments/_message :: message"></div>
+      <div class="row">
+        <label for="email">
+          Email:
+          <input
+            type="text"
+            name="email"
+            id="email"
+            th.placeholder="youremail@uga.edu"
+            required="required"
+          />
+        </label>
+      </div>
+      <div class="row">
+        <label for="password">
+          Password:
+          <input
+            type="password"
+            pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+            name="password"
+            id="password"
+            th.placeholder="******"
+            required="required"
+          />
+        </label>
+        <div
+          align="center"
+          th:if="${param.error}"
+          th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+        >
+          <p style="font-size: 20; color: #FF1C19;">
+            Reason: <span th:text="${errorMsg}">Wrong input!</span>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="remember">
+          <div>
+            <input
+              type="checkbox"
+              name="remember-me"
+              value="Remember me"
+            /><span>Remember me</span>
+          </div>
+          <a th:href="@{/forgotpasswd}">Forgot password ?</a>
+        </div>
+      </div>
+      <div class="row">
+        <button type="submit">Login</button>
+      </div>
+    </form>
+    <div class="row">
+      <p>Or via social</p>
+      <div class="social-btn-2">
+        <a class="fb" href="#"><i class="ion-social-facebook"></i>Facebook</a>
+        <a class="tw" href="#"><i class="ion-social-twitter"></i>twitter</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end of login form popup-->

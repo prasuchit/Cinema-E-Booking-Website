@@ -1,0 +1,14 @@
+package edu.uga.cinemaapp.other;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class movieStatMap {
+
+    public static final Map<Integer, String> statusMap = new HashMap<>();
+
+    static {
+        statusMap.put(0, "Available");
+        statusMap.put(1, "Coming Soon");
+    }
+}
